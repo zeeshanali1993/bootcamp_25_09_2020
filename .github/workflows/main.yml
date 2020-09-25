@@ -1,0 +1,24 @@
+name: Upload on Surge
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Installing Nodejs
+        uses: actions/setup-node@v1.4.3
+        with:
+          node-version: 12.x
+      - name: Installing Yarn
+        uses: Borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+          
+      - name: Bilding react 
+        run: yarn build
+      
+      - name: Publishing on Surge
+        run: surge ./build bootcamp_1_25_09_2020.surge.sh --token ${{secrets.BOOTCAMP_25_09_2020}}
