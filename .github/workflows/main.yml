@@ -20,5 +20,8 @@ jobs:
       - name: Bilding react 
         run: yarn build
       
+      - name: Installing Surge
+        run: npm install surge -g
+      
       - name: Publishing on Surge
         run: surge ./build bootcamp_1_25_09_2020.surge.sh --token ${{secrets.BOOTCAMP_25_09_2020}}
